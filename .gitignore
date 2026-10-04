@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyi
+*.egg-info/
+build/
+dist/
+.eggs/
+*.egg
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 测试与覆盖率
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+.mypy_cache/
+
+# 编辑器 / 系统
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# 产出物（基准结果按需决定是否纳入版本控制）
+# benchmark.json
+*.log

@@ -1,0 +1,4 @@
+# PgmForge 运行时依赖（宽松下界，便于与其它项目共存）
+# 精确锁定的版本见 requirements.lock.txt
+numpy>=1.24
+networkx>=3.0

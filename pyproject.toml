@@ -1,0 +1,81 @@
+# PgmForge · 概率图模型推断系统
+# 作者：晨星
+
+[project]
+name = "pgmforge"
+version = "0.1.0"
+description = "概率图模型精确与近似推断：变量消去 / 团树 / 环形 BP / 平均场 / Gibbs，带暴力穷举金标准交叉验证"
+authors = [{ name = "晨星" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = [
+    "probabilistic-graphical-model",
+    "bayesian-network",
+    "markov-random-field",
+    "variable-elimination",
+    "junction-tree",
+    "belief-propagation",
+    "inference",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.24",
+    "networkx>=3.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/CJX0712/pgmforge"
+Repository = "https://github.com/CJX0712/pgmforge"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [".git", "__pycache__", "build", "dist"]
+
+[tool.ruff.lint]
+# 选用：pycodestyle + pyflakes + 命名 + 导入排序 + pyupgrade + bugbear + 简化
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+ignore = [
+    # 本项目文档/注释为中文，全角标点不应被判为歧义字符
+    "RUF001",  # 字符串中的全角标点
+    "RUF002",  # docstring 中的全角标点
+    "RUF003",  # 注释中的全角标点
+    "B028",    # 暂不强制 noqa 带具体规则
+    "RUF012",  # 允许可变类默认（内部受控）
+]
+
+[tool.ruff.lint.per-file-ignores]
+# 入口脚本需先引导 sys.path 再导入包
+"cli.py" = ["E402"]
+"examples/run_demo.py" = ["E402"]
+"tests/*" = ["E402", "B017"]  # B017: 允许宽泛异常断言，覆盖自定义错误层级
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --no-header --strict-markers"
+pythonpath = [".."]
+
+[tool.coverage.run]
+source = ["pgmforge"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "@(abc\\.)?abstractmethod",
+]

@@ -1,0 +1,6 @@
+# PgmForge 锁定依赖（name==version，可干净环境一键复现）
+# 生成环境：Python 3.13.12 / Windows x64
+# 用途：pip install -r requirements.lock.txt
+# 作者：晨星
+numpy==2.5.3
+networkx==3.7
