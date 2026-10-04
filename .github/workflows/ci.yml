@@ -35,7 +35,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12", "3.13"]
+        # numpy 2.5.3 (pinned in requirements.lock.txt) requires Python >= 3.12
+        python-version: ["3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -47,6 +48,6 @@ jobs:
           python -m pip install -r requirements.lock.txt
           python -m pip install pytest pytest-cov
       - name: Run tests with coverage
-        run: pytest tests/ -q --cov=pgmforge --cov-report=term-missing --cov-fail-under=80
+        run: pytest tests/ -q --cov=core --cov=inference --cov=pipeline --cov-report=term-missing --cov-fail-under=80
       - name: End-to-end demo smoke
         run: python cli.py demo
